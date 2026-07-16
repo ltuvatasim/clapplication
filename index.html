@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>নৈমিত্তিক ছুটির আবেদন ফরম</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+
+    /* A4 পৃষ্ঠা সেটিংস - মার্জিন কমিয়ে আনা হয়েছে */
+    @page {
+      size: A4;
+      margin: 10mm 15mm 10mm 20mm;
+    }
+
+    body {
+      font-family: 'Hind Siliguri', Arial, sans-serif;
+      background-color: #f3f4f6;
+      color: #000;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-weight: 700;
+      border-bottom: 2px solid #27ae60;
+      padding-bottom: 8px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #bdc3c7;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 0.95rem;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    .flex-group {
+      display: flex;
+      gap: 15px;
+    }
+
+    .flex-group > div {
+      flex: 1;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background-color: #27ae60;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #219653;
+    }
+
+    #printArea {
+      display: none;
+      background: #fff;
+    }
+
+    .form-title {
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 20px;
+    }
+
+    /* টেবিল স্টাইল - বর্ডারহীন ও কম লাইন স্পেস */
+    .table-style {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+    }
+
+    .table-style td {
+      border: none;
+      padding: 4px 0px;
+      vertical-align: top;
+      line-height: 1.4;
+      font-weight: normal;
+    }
+
+    .col-num {
+      width: 6%;
+      font-weight: normal;
+    }
+
+    .col-label {
+      width: 44%;
+      font-weight: normal;
+    }
+
+    .col-value {
+      width: 50%;
+    }
+
+    .declaration {
+      text-align: justify;
+      line-height: 1.5;
+      margin: 15px 0;
+      font-weight: normal;
+    }
+
+    /* শাখা পূরণ করিবে সেকশন */
+    .branch-section {
+      border: none;
+      padding: 10px 0 0 0;
+      margin-top: 15px;
+    }
+
+    .branch-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .branch-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .branch-table td {
+      border: none;
+      padding: 4px 0px;
+      font-weight: normal;
+      vertical-align: top;
+      line-height: 1.4;
+    }
+
+    .sign-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 35px;
+      font-weight: normal;
+    }
+
+    .sign-box {
+      text-align: center;
+      width: 220px;
+      font-weight: normal;
+    }
+
+    .print-btn-container {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .print-btn {
+      background-color: #2980b9;
+      width: auto;
+      padding: 10px 30px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+        width: 100%;
+      }
+      form, h2, .print-btn-container {
+        display: none !important;
+      }
+      #printArea {
+        display: block !important;
+        width: 100%;
+        max-height: 297mm;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>নৈমিত্তিক ছুটির আবেদন ফরম</h2>
+  <h7>পরিকল্পনায়: অসীম দাশ গুপ্ত</h7>
+  <form id="leaveForm">
+    <label>০১। ছুটি মঞ্জুরকারী কর্মকর্তার পদবী</label>
+    <select id="approverDesignation" required>
+      <option value="">নির্বাচন করুন</option>
+      <option value="কমিশনার">কমিশনার</option>
+ <option value="যুগ্ম কমিশনার">অতিরিক্ত কমিশনার</option>
+      <option value="যুগ্ম কমিশনার">যুগ্ম কমিশনার</option>
+      <option value="উপ-কমিশনার">উপ-কমিশনার-১</option>
+<option value="উপ-কমিশনার">উপ-কমিশনার-২</option>
+      <option value="সহকারী কমিশনার">সহকারী কমিশনার</option>
+          </select>
+
+    <label>০২। আবেদনকারীর নাম</label>
+    <input type="text" id="applicantName" placeholder="নাম লিখুন" required>
+
+    <label>০৩। পদবী</label>
+    <select id="applicantDesignation" required>
+      <option value="">নির্বাচন করুন</option>
+      <option value="রাজস্ব কর্মকর্তা">রাজস্ব কর্মকর্তা</option>
+      <option value="সহকারী রাজস্ব কর্মকর্তা">সহকারী রাজস্ব কর্মকর্তা</option>
+      <option value="কম্পিউটার অপারেটর">কম্পিউটার অপারেটর</option>
+      <option value="হিসাবরক্ষক-২">হিসাবরক্ষক-২</option>
+      <option value="ক্যাশিয়ার">ক্যাশিয়ার</option>
+      <option value="উচ্চমান সহকারী">উচ্চমান সহকারী</option>
+      <option value="সিপাই">সিপাই</option>
+    </select>
+
+    <div class="flex-group">
+      <div>
+        <label>০৪। বর্তমান কর্মস্থল/শাখা</label>
+        <input type="text" id="branchName" placeholder="যেমন: প্রশাসন শাখা" required>
+      </div>
+      <div>
+        <label>০৫। বর্তমান ছুটি গ্রহণের কারণ</label>
+        <input type="text" id="reason" placeholder="যেমন: ব্যক্তিগত অসুস্থতা/পারিবারিক কাজ" required>
+      </div>
+    </div>
+
+    <label>০৬ ও ০৭। প্রার্থীত ছুটির তারিখ ও সময়কাল</label>
+    <div class="flex-group">
+      <div><label style="font-size:0.85rem; color:#7f8c8d;">হতে (শুরু)</label><input type="date" id="startDate" required></div>
+      <div><label style="font-size:0.85rem; color:#7f8c8d;">পর্যন্ত (শেষ)</label><input type="date" id="endDate" required></div>
+    </div>
+
+    <label>ছুটির মোট দিন সংখ্যা (স্বয়ংক্রিয়)</label>
+    <input type="text" id="totalDays" readonly placeholder="তারিখ দিলে অটো হিসাব হবে">
+
+    <label>০৮। ছুটিকালীন সময়ে নৈমিত্তিক/জরুরী কার্যাদি কে সম্পাদন করবেন</label>
+    <input type="text" id="dutyOfficer" placeholder="দায়িত্বপ্রাপ্ত কর্মকর্তার নাম ও পদবী" required>
+
+    <label>১০। ছুটিতে অবস্থানকালীন পূর্ণ ঠিকানা</label>
+    <input type="text" id="leaveAddress" placeholder="পূর্ণ ঠিকানা লিখুন" required>
+
+    <label>১১। জরুরী যোগাযোগের ফোন নং</label>
+    <input type="text" id="phoneNum" placeholder="মোবাইল নম্বর লিখুন" required>
+
+    <button type="submit">আবেদনপত্রের প্রিভিউ দেখুন</button>
+  </form>
+
+  <!-- প্রিন্ট ও পিডিএফ লেআউট -->
+  <div id="printArea">
+    <div class="form-title">নৈমিত্তিক ছুটির জন্য আবেদন</div>
+
+    <table class="table-style">
+      <tr>
+        <td class="col-num">০১।</td>
+        <td class="col-label">ছুটি মঞ্জুরকারী কর্মকর্তার পদবী</td>
+        <td class="col-value">: <span id="pApprover"></span></td>
+      </tr>
+      <tr>
+        <td class="col-num">০২।</td>
+        <td class="col-label">আবেদনকারীর নাম</td>
+        <td class="col-value">: <span id="pName"></span></td>
+      </tr>
+      <tr>
+        <td class="col-num">০৩।</td>
+        <td class="col-label">পদবী</td>
+        <td class="col-value">: <span id="pDesignation"></span></td>
+      </tr>
+      <tr>
+        <td class="col-num">০৪।</td>
+        <td class="col-label">বর্তমান কর্মস্থল/শাখা</td>
+        <td class="col-value">: <span id="pBranch"></span></td>
+      </tr>
+      <tr>
+        <td class="col-num">০৫।</td>
+        <td class="col-label">বর্তমান ছুটি গ্রহণের কারণ</td>
+        <td class="col-value">: <span id="pReason"></span></td>
+      </tr>
+      <tr>
+        <td class="col-num">০৬।</td>
+        <td class="col-label">কতদিন ছুটির প্রয়োজন</td>
+        <td class="col-value">: <span id="pTotalDays"></span> দিন।</td>
+      </tr>
+      <tr>
+        <td class="col-num">০৭।</td>
+        <td class="col-label">প্রার্থীত ছুটির তারিখ</td>
+        <td class="col-value">: <span id="pDates"></span></td>
+      </tr>
+      <tr>
+        <td class="col-num">০৮।</td>
+        <td class="col-label">ছুটিকালীন সময় নৈমিত্তিক/জরুরী কার্যাদি-কে সম্পাদন করবেন</td>
+        <td class="col-value">: <span id="pDutyOfficer"></span></td>
+      </tr>
+      <tr>
+        <td class="col-num">০৯।</td>
+        <td class="col-label">তাঁহার সম্মতিজ্ঞাপক স্বাক্ষর</td>
+        <td class="col-value">:</td>
+      </tr>
+      <tr>
+        <td class="col-num">১০।</td>
+        <td class="col-label">ছুটিতে অবস্থানকালীন পূর্ণ ঠিকানা</td>
+        <td class="col-value">: <span id="pAddress"></span></td>
+      </tr>
+      <tr>
+        <td class="col-num">১১।</td>
+        <td class="col-label">জরুরী যোগাযোগের ফোন নং (যদি থাকে)</td>
+        <td class="col-value">: <span id="pPhone"></span></td>
+      </tr>
+    </table>
+
+    <div class="declaration">
+      মহোদয়,<br>
+      উক্ত তারিখে নৈমিত্তিক ছুটি মঞ্জুর ও কর্মস্থল ত্যাগের অনুমতির জন্য সবিনয় আবেদন করছি। ছুটি শেষে যথাসময়ে কাজে যোগদান করব।
+    </div>
+
+    <div class="sign-container">
+      <div>তারিখ: <span id="pTodayDate"></span></div>
+      <div class="sign-box">
+        <br><br>
+        <strong>(আবেদনকারীর স্বাক্ষর ও তারিখ)</strong>
+      </div>
+    </div>
+
+    <!-- শাখা পূরণ করিবে অংশ -->
+    <div class="branch-section">
+      <div class="branch-title">শাখা পূরণ করিবে:</div>
+      <table class="branch-table">
+        <tr>
+          <td style="width: 6%;">১।</td>
+          <td style="width: 44%;">চলতি বৎসরে মোট কতদিন ছুটি ভোগ করিয়াছেন</td>
+          <td style="width: 50%;">:</td>
+        </tr>
+        <tr>
+          <td>২।</td>
+          <td>কতদিন পাওনা আছে</td>
+          <td>:</td>
+        </tr>
+        <tr>
+          <td>৩।</td>
+          <td>ছুটি মঞ্জুরকারী কর্তৃপক্ষের স্বাক্ষর</td>
+          <td>:</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="print-btn-container">
+      <button class="print-btn" onclick="window.print()">প্রিন্ট / PDF হিসেবে ডাউনলোড করুন</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toBangaliDigits(str) {
+    const map = { '0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯' };
+    return str.replace(/[0-9]/g, m => map[m]);
+  }
+
+  function toBangaliDateString(dateObj) {
+    if (isNaN(dateObj)) return '';
+    const day = toBangaliDigits(String(dateObj.getDate()).padStart(2, '0'));
+    const month = toBangaliDigits(String(dateObj.getMonth() + 1).padStart(2, '0'));
+    const year = toBangaliDigits(String(dateObj.getFullYear()));
+    return `${day}/${month}/${year}`;
+  }
+
+  document.getElementById('startDate').addEventListener('change', calculateDays);
+  document.getElementById('endDate').addEventListener('change', calculateDays);
+
+  function calculateDays() {
+    const startVal = document.getElementById('startDate').value;
+    const endVal = document.getElementById('endDate').value;
+    if (startVal && endVal) {
+      const start = new Date(startVal);
+      const end = new Date(endVal);
+      if (end >= start) {
+        const diff = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+        document.getElementById('totalDays').value = toBangaliDigits(diff.toString());
+      } else {
+        document.getElementById('totalDays').value = "";
+      }
+    }
+  }
+
+  document.getElementById('leaveForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    
+    const approver = document.getElementById('approverDesignation').value;
+    const name = document.getElementById('applicantName').value;
+    const designation = document.getElementById('applicantDesignation').value;
+    const branch = document.getElementById('branchName').value;
+    const reason = document.getElementById('reason').value;
+    const totalDays = document.getElementById('totalDays').value;
+    const dutyOfficer = document.getElementById('dutyOfficer').value;
+    const address = document.getElementById('leaveAddress').value;
+    const phone = document.getElementById('phoneNum').value;
+
+    const startDate = new Date(document.getElementById('startDate').value);
+    const endDate = new Date(document.getElementById('endDate').value);
+    const today = new Date();
+
+    document.getElementById('pApprover').innerText = approver;
+    document.getElementById('pName').innerText = name;
+    document.getElementById('pDesignation').innerText = designation;
+    document.getElementById('pBranch').innerText = branch;
+    document.getElementById('pReason').innerText = reason;
+    document.getElementById('pTotalDays').innerText = totalDays;
+    document.getElementById('pDates').innerText = toBangaliDateString(startDate) + " হতে " + toBangaliDateString(endDate) + " পর্যন্ত।";
+    document.getElementById('pDutyOfficer').innerText = dutyOfficer;
+    document.getElementById('pAddress').innerText = address;
+    document.getElementById('pPhone').innerText = toBangaliDigits(phone);
+    document.getElementById('pTodayDate').innerText = toBangaliDateString(today);
+
+    document.getElementById('printArea').style.display = 'block';
+    window.scrollTo({
+      top: document.getElementById('printArea').offsetTop,
+      behavior: 'smooth'
+    });
+  });
+</script>
+
+</body>
+</html>
